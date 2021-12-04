@@ -11,11 +11,11 @@ public class Day01 {
     public static void main(String[] args) {
 
         BufferedReader bufferedReader;
-        ArrayList<Integer> depths = new ArrayList<>(); //arraylist för depths
+        ArrayList<Integer> depths = new ArrayList<>(); //arraylist for depths
 
         try {
-            bufferedReader = Files.newBufferedReader(Path.of("input/input.txt")); //skapar en bufferreader som kan läsa in textfilen
-            String line; //en holder för bufferreader
+            bufferedReader = Files.newBufferedReader(Path.of("input/input.txt"));
+            String line;
             while ((line = bufferedReader.readLine()) != null) { //kommer läsas så länge nästa linje inte är null
                 int depth = Integer.parseInt(line); //en variabel för depth som vi parsar från textfilen till en integer
                 depths.add(depth); //lägger in depth i arraylisten som kallas för depths
@@ -27,14 +27,16 @@ public class Day01 {
             e.printStackTrace();
         }
 
-        partTwo(depths);
-        //Del 1
+
+        //Method for part one and method for part two
         partOne(depths);
+        partTwo(depths);
+
+
 
     }
 
     private static void partTwo(ArrayList<Integer> depths) {
-        //få fram de tre första värden i arraylisten
         int count = 0;
         int previousGroup = 0;
 
@@ -52,7 +54,9 @@ public class Day01 {
             }
             previousGroup = currentGroup;
         }
-        System.out.println("Count Increases: " + count);
+
+        System.out.println("Part 2: " + count);
+
     }
 
 
@@ -62,13 +66,12 @@ public class Day01 {
         for (int i = 1; i < depths.size(); i++) { //for loop som börjar med startvärde 1 (man kan inte jämföra 0 med något innan det) och går igenom arraylisten och ökar +1 för varje varv
             if (depths.get(i) > previousI) { //om det är så att elementet på nuvarandet indexet är större än det förra så kommer det adderas med +1 hos variabeln för svaret
                 answer++;
-                System.out.println("Current depth: " + depths.get(i) + " Previous depth: " + previousI);
             }
 
             previousI = depths.get(i); //assign it
         }
 
-        System.out.println(answer);
+        System.out.println("Part 1: " + answer);
     }
 
 
